@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#判断是否有输入文件
+if [ ! -n "$1" ]; then
+    echo "no input file"
+    exit 1
+else
+    echo "input file: $1"
+fi
+
+#判断bin文件是否存在
+if [ ! -d "./bin" ]; then
+    mkdir -p ./bin
+fi
+
+in_file=$1
+file=${in_file%%.*}
+g++ --std=c++17 $in_file -o bin/$file
+./bin/$file
